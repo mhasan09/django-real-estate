@@ -49,8 +49,13 @@ THIRD_PARTY_APPS = [
     'phonenumber_field',
 ]
 
-LOCAL_APPS = ['apps.common','apps.users','apps.ratings','apps.profiles']
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS
+
+LOCAL_APPS = ['apps.common',
+              'apps.users',
+              'apps.ratings',
+              'apps.profiles']
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,7 +138,7 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+AUTH_USER_MODEL = 'users.User'
 import logging
 import logging.config
 
