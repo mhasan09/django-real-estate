@@ -9,9 +9,13 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import environ
 from datetime import timedelta
 from pathlib import Path
+import environ
+import logging
+import logging.config
+from django.utils.log import DEFAULT_LOGGING
+
 env = environ.Env(DEBUG=(bool,False))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -187,10 +191,6 @@ DJOSER = {
 }
 
 
-import logging
-import logging.config
-
-from django.utils.log import DEFAULT_LOGGING
 
 logger = logging.getLogger(__name__)
 
