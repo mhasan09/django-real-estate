@@ -2,41 +2,34 @@ import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-// import Property from "../components/Property";
+import Property from "../components/Property";
 import Spinner from "../components/Spinner";
 // import Title from "../components/Title";
-// import { getProperties } from "../features/properties/propertySlice";
+import { getProperties } from "../features/properties/propertySlice";
 
 const PropertiesPage = () => {
-    // const { properties, isLoading, isError, message } = useSelector(
-    // 	(state) => state.properties
-    // );
+    const { properties, isLoading, isError, message } = useSelector(
+        (state) => state.properties
+    );
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    // 	if (isError) {
-    // 		toast.error(message, { icon: "😭" });
-    // 	}
-    // 	dispatch(getProperties());
-    // }, [dispatch, isError, message]);
+    useEffect(() => {
+        if (isError) {
+            toast.error(message, { icon: "😭" });
+        }
+        dispatch(getProperties());
+    }, [dispatch, isError, message]);
 
-    // if (isLoading) {
-    // 	return <Spinner />;
-    // }
+    if (isLoading) {
+        return <Spinner />;
+    }
     return (
         <>
             {/* <Title title="Our Properties Catalog" /> */}
-            <Container>
-                <Row>
-                    <Col className="mg-top text-center">
-                        <h1>Our Catalog of properties</h1>
-                        <hr className="hr-text" />
-                    </Col>
-                </Row>
-            </Container>
+            
 
-            {/* <Container>
+            <Container>
 				<Row>
 					<Col className="mg-top text-center">
 						<h1>Our Catalog of properties</h1>
@@ -60,7 +53,7 @@ const PropertiesPage = () => {
 						</Row>
 					</>
 				}
-			</Container> */}
+			</Container>
         </>
     );
 };

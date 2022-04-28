@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-// import NotFound from "./components/NotFound";
+import NotFound from "./components/NotFound";
 // import ActivatePage from "./pages/ActivatePage";
 import HomePage from "./pages/HomePage";
 // import LoginPage from "./pages/LoginPage";
@@ -28,10 +28,10 @@ const App = () => {
 						{/* <Route
 							path="/activate/:uid/:token"
 							element={<ActivatePage />}
-						/>
-						<Route path="*" element={<NotFound />} /> */}
+						/>*/}
+						<Route path="*" element={<NotFound />} /> 
 					</Routes>
-					{/* <ToastContainer theme="dark" /> */}
+					<ToastContainer theme="dark" />
 				</main>
 				<Footer />
 			</Router>
