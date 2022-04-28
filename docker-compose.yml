@@ -21,6 +21,27 @@ services:
             - estate-react
 
     client:
+<<<<<<< HEAD
+=======
+        build:
+            context: ./client
+            dockerfile: Dockerfile.dev
+        restart: on-failure
+        volumes:
+            - ./client:/app
+            - /app/node_modules
+        networks:
+            - estate-react
+
+    
+    nginx:
+        restart: always
+        depends_on:
+            - api
+        volumes:
+            - static_volume:/app/staticfiles
+            - media_volume:/app/mediafiles
+>>>>>>> b4acbc28be74c0b7f9ffea20361ede1425495660
         build:
             context: ./client
             dockerfile: ./docker/local/Dockerfile
