@@ -10,8 +10,8 @@ services:
             - .:/app
             - static_volume:/app/staticfiles
             - media_volume:/app/mediafiles
-        # ports:
-        #     - "8000:8000"
+        expose:
+            - "8000"
         env_file:
             - .env
         depends_on:
@@ -19,19 +19,15 @@ services:
             - redis
         networks:
             - estate-react
-    
-    nginx:
-        restart: always
-        depends_on:
-            - api
-        volumes:
-            - static_volume:/app/staticfiles
-            - media_volume:/app/mediafiles
+
+    client:
         build:
-            context: ./docker/local/nginx
-            dockerfile: Dockerfile
-        ports:
-            - "8080:80"
+            context: ./client
+            dockerfile: ./docker/local/Dockerfile
+        restart: on-failure
+        volumes:
+            - ./client:/app
+            - /app/node_modules
         networks:
             - estate-react
 
@@ -85,6 +81,20 @@ services:
         networks:
             - estate-react
 
+    nginx:
+        restart: always
+        depends_on:
+            - api
+        volumes:
+            - static_volume:/app/staticfiles
+            - media_volume:/app/mediafiles
+        build:
+            context: ./docker/local/nginx
+            dockerfile: Dockerfile
+        ports:
+            - "8080:80"
+        networks:
+            - estate-react
 
 networks:
     estate-react:
